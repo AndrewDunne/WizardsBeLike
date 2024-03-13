@@ -1,1 +1,48 @@
-
+<html>
+<link rel="stylesheet" href="style.css">
+	<div id="setup">
+		<h3>1: Write a note to someone
+		<input type="text" id="field" size="300">
+		<button type="button" onclick="stepTwo()">Click me when you're done</button>
+		
+		<div id="steptwo" style="display: none">
+			<br>
+			<p id="instructions">Go to chatgpt and paste the following text into it:
+			<p id="copypaste">
+			<p> Take chatGPT's output and paste it into the following field, then click the button below.
+			<input type="text" id="field2" size="300">
+			<button type="button" onclick="stepThree()">Click me when you're done</button>
+		</div>
+	</div>
+	
+	<div id="postIt" style="display:none;background-color:white;margin:auto;width:50%;margin-top:200px;border:3px solid black;font-size:24px;">
+		<h2 id="output"></h2>
+	</div>
+	
+	<script>
+	
+	var adjectives = ['bitter', 'gleeful', 'nerdy', 'depressed', 'livid', 'australian', 'dying', 'irradiated']
+	var adjectives2 = ['rambling', 'solemn', 'rowdy', 'unholy', 'irradiated', 'dying', 'refrigerated', 'flirtatious', 'growling']
+	var nouns = ['wizard', 'frog', 'baron', 'grandma', 'secret service agent']
+	var images = ['wizardDesk.jpg', 'frog.jpg', 'ninja.jpg', 'detective.jpg', 'coworker.jpg']
+	
+	var randomAdj = Math.floor(Math.random() * adjectives.length);
+	var randomAdj2 = Math.floor(Math.random() * adjectives2.length);
+	var randomRole = Math.floor(Math.random() * nouns.length);
+	
+	function stepTwo() {
+		document.getElementById("steptwo").style.display = "block";
+		document.getElementById("copypaste").innerHTML = "\"Rewrite the following quotation as if written by a " + adjectives[randomAdj] + " " + nouns[randomRole] + ": \"" + document.getElementById("field").value + "\"\"";
+	}
+	
+	function stepThree() {
+		document.getElementById("setup").style.display = "none";
+		document.getElementById("postIt").style.display = "block";
+		document.getElementById("postIt").innerHTML = document.getElementById("field2").value;
+		document.body.style.backgroundImage = "url('" + images[randomRole] + "')";
+	}
+	
+	
+	</script>
+	
+</html>
